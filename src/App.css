@@ -1,0 +1,87 @@
+body {
+  font-family: "Roboto";
+}
+.table-head{
+  color: white !important;
+  background-color: rgb(44, 49, 54) !important;
+}
+.numbers{
+  color: rgb(70, 68, 68) !important;
+  font-size: 20px;
+}
+.new-deaths{
+  background-color: red;
+}
+.color-white{
+  color: white;
+}
+.new-cases{
+  background-color:#3333ff ;
+}
+.switch-tab{
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+.searchCountry{
+  display: inline-block;
+  background-color: royalblue;
+  opacity: 0.9;
+  color: white;
+  border-radius: 5px;
+  margin-left: 15%;
+  margin-bottom: 10px;
+  width: 264px;
+  padding: 0;
+  margin-right: 30px;
+}
+.searchIcon{
+  margin: 10px 0px -5px 10px;
+
+}
+.searchInput{
+  background-color: royalblue;
+  border: none;
+  display: inline-block;
+  padding: 5px;
+  height: 100%;
+  font-size: 18px;
+  outline: 0;
+  color: whitesmoke;
+  border-radius: 5px;
+}
+::placeholder{
+  color: whitesmoke;
+}
+.country-load{
+  text-align: center;
+  font-size: 25px;
+  margin-top: 10%;
+  color: rgb(31, 80, 126);
+}
+.line-chart{
+  max-width: 700px;
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bar-chart{
+  max-width: 800px;
+}
+.graph-section{
+  max-width: 700px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#graph{
+  width: 200px;
+  text-align: center;
+}
+.select-country{
+  font-size: 25px;
+  color: rgb(42, 106, 165);
+}
