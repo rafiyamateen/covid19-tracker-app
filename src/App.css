@@ -24,19 +24,28 @@ body {
   z-index: 1;
 }
 .searchCountry{
-  display: inline-block;
+  display: flex;
+  flex-wrap: nowrap;
   background-color: royalblue;
   opacity: 0.9;
   color: white;
   border-radius: 5px;
   margin-bottom: 10px;
   width: 264px;
-  padding: 0;
+  padding: 5px;
   margin-right: 2px;
 }
 .searchIcon{
-  margin: 10px 0px -5px 10px;
+  margin: 4px 0px -5px 10px;
 
+}
+.flex{
+  display:flex;
+}
+.viewGraphs{
+  display: inline-block;
+  margin-bottom: 10px;
+  align-self: flex-end;
 }
 .searchInput{
   background-color: royalblue;

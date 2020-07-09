@@ -91,12 +91,13 @@ export function Countries() {
         <div>
             {countriesData[0].title ? (
                 <div>
+                    <div className='flex'>
                     <div className='searchCountry'>
                         <SearchIcon className='searchIcon' />
                         <input type='search' placeholder='Search Country...' onChange={searchCountry} className='searchInput' />
                     </div>
-                    <a href='#graph'>View Graphs</a>
-
+                    <a className='viewGraphs' href='#graph'>View Graphs</a>
+                    </div>
                     <Paper className={tableClasses.root}>
                         <TableContainer className={tableClasses.container}>
                             <Table stickyHeader aria-label="sticky table">
