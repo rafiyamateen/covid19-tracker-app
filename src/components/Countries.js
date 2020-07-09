@@ -132,17 +132,17 @@ export function Countries() {
                                                 <TableCell align="right">
                                                     <NumberFormat value={countriesData[ind].total_recovered} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
-                                                <TableCell className={countriesData[ind].total_new_cases_today!==0?'new-cases':null} align="right">
+                                                <TableCell className={countriesData[ind].total_new_cases_today !== 0 ? 'new-cases' : null} align="right">
                                                     <NumberFormat className='color-white' value={countriesData[ind].total_new_cases_today} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
-                                                <TableCell className={countriesData[ind].total_new_deaths_today!==0?'new-deaths':null} align="right">
+                                                <TableCell className={countriesData[ind].total_new_deaths_today !== 0 ? 'new-deaths' : null} align="right">
                                                     <NumberFormat className='color-white' value={countriesData[ind].total_new_deaths_today} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    <NumberFormat value={countriesData[ind].total_active_cases} displayType={'text'} thousandSeparator={true} />
+                                                    <NumberFormat value={countriesData[ind].total_serious_cases} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    <NumberFormat value={countriesData[ind].total_serious_cases} displayType={'text'} thousandSeparator={true} />
+                                                    <NumberFormat value={countriesData[ind].total_active_cases} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
                                             </TableRow>
                                         );
