@@ -1,29 +1,55 @@
 body {
   font-family: "Roboto";
 }
-.table-head{
+
+.table-head {
   color: white !important;
   background-color: rgb(44, 49, 54) !important;
 }
-.numbers{
+
+.numbers {
   color: rgb(70, 68, 68) !important;
   font-size: 20px;
 }
-.new-deaths{
-  background-color: red;
+
+.color-black {
+  color: black;
 }
-.color-white{
+
+.new-deaths {
+  background-color: red;
+  color: white !important;
+}
+
+.color-white {
   color: white;
 }
-.new-cases{
-  background-color:#3333ff ;
+
+.new-cases {
+  background-color: #3333ff;
+  color: white !important;
 }
-.switch-tab{
+
+.MuiFab-secondary {
+  background-color: rgb(35, 75, 194) !important;
+}
+
+.PrivateTabIndicator-colorSecondary-9 {
+  background-color: whitesmoke !important;
+}
+
+.switch-tab {
   position: sticky;
   top: 0px;
   z-index: 1;
 }
-.searchCountry{
+
+.no_match {
+  text-align: center !important;
+  font-size: 18px !important;
+}
+
+.searchCountry {
   display: flex;
   flex-wrap: nowrap;
   background-color: royalblue;
@@ -35,20 +61,23 @@ body {
   padding: 5px;
   margin-right: 2px;
 }
-.searchIcon{
-  margin: 4px 0px -5px 10px;
 
+.searchIcon {
+  margin: 4px 0px -5px 10px;
 }
-.flex{
-  display:flex;
+
+.flex {
+  display: flex;
   flex-wrap: wrap;
 }
-.viewGraphs{
+
+.viewGraphs {
   display: inline-block;
   margin-bottom: 10px;
   align-self: flex-end;
 }
-.searchInput{
+
+.searchInput {
   background-color: royalblue;
   border: none;
   display: inline-block;
@@ -60,26 +89,31 @@ body {
   color: whitesmoke;
   border-radius: 5px;
 }
-::placeholder{
+
+::placeholder {
   color: whitesmoke;
 }
-.country-load{
+
+.country-load {
   text-align: center;
   font-size: 25px;
   margin-top: 10%;
   color: rgb(31, 80, 126);
 }
-.line-chart{
+
+.line-chart {
   max-width: 700px;
   margin: 50px auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.bar-chart{
+
+.bar-chart {
   max-width: 800px;
 }
-.graph-section{
+
+.graph-section {
   max-width: 700px;
   margin: 50px auto;
   display: flex;
@@ -87,11 +121,13 @@ body {
   justify-content: center;
   align-items: center;
 }
-#graph{
+
+#graph {
   width: 200px;
   text-align: center;
 }
-.select-country{
+
+.select-country {
   font-size: 25px;
   color: rgb(42, 106, 165);
 }

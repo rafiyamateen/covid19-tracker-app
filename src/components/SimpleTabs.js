@@ -63,7 +63,7 @@ export default function SimpleTabs() {
 
   return (
     <div className={classNames([`${classes.root}`, 'tab'])}>
-      <AppBar position="" className='switch-tab'>
+      <AppBar position="sticky" className='switch-tab'>
         <Tabs className={classes.tabs} value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab className={classes.tab} label="Global" {...a11yProps(0)} />
           <Tab className={classes.tab} label="Countries" {...a11yProps(1)} />

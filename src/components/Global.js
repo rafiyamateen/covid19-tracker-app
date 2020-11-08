@@ -13,32 +13,43 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: theme.palette.text.secondary,
         minHeight: 130.53,
-        padding: 10,
+        padding: 0,
         display: 'flex',
         flexDirection: 'column',
     },
     title: {
-        textTransform: 'uppercase',
+        textTransform: 'capitalize',
         color: 'rgb(58, 112, 163)'
     }
 }));
 export default function Global() {
-    const classes = useStyles();
+            const classes = useStyles();
     const [globalData, setGlobalData] = useState({});
     useEffect(() => {
         async function fetchData() {
-            const fetched = await fetch('https://api.thevirustracker.com/free-api?global=stats');
+            const fetched = await fetch('https://corona.lmao.ninja/v2/all?yesterday');
             const data = await fetched.json();
-            delete data.results[0].source;
-            delete data.results[0].total_unresolved;
-            setGlobalData(data.results[0]);
+            delete data.updated;
+            delete data.casesPerOneMillion;
+            delete data.deathsPerOneMillion;
+            delete data.tests;
+            delete data.population;
+            delete data.oneCasePerPeople;
+            delete data.oneDeathPerPeople;
+            delete data.oneTestPerPeople;
+            delete data.activePerOneMillion;
+            delete data.recoveredPerOneMillion;
+            delete data.testsPerOneMillion;
+            delete data.criticalPerOneMillion;
+            delete data.affectedCountries;
+            setGlobalData(data);
         }
         fetchData();
     }, [])
 
     return (
         <div className={classes.root}>
-            {globalData['total_cases'] ? (
+            {globalData['cases'] ? (
                 <div>
                     <a href='#graph'>View Graph</a>
                     <Grid container spacing={3}>

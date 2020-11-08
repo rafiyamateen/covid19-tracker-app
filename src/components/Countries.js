@@ -35,23 +35,24 @@ export function Countries() {
     const [countriesData, setCountriesData] = useState([{}])
     useEffect(() => {
         async function fetchData() {
-            const fetched = await fetch('https://api.thevirustracker.com/free-api?countryTotals=ALL');
+            const fetched = await fetch('https://corona.lmao.ninja/v2/countries?yesterday&sort');
             const data = await fetched.json();
-            const changedData = Object.values(Object.values(data.countryitems)[0]);
-            delete changedData[182];
-            setCountriesData(changedData);
+            setCountriesData(data);
         }
         fetchData()
     }, [])
+    const [matchFound, setMatchFound] = useState(true);
     const searchCountry = (e) => {
+        setMatchFound(false);
         let searchValue = document.getElementsByTagName('input')[0].value.toLowerCase();
         for (let i = 0; i < countriesData.length; i++) {
             if (countriesData[i]) {
-                if (countriesData[i].title.toLowerCase().indexOf(searchValue) === -1) {
-                    document.getElementsByClassName('tableRow')[i].style.display = 'none';
+                if (countriesData[i].country.toLowerCase().indexOf(searchValue) !== -1) {
+                    document.getElementsByClassName('tableRow')[i].style.display = '';
+                    setMatchFound(true);
                 }
                 else {
-                    document.getElementsByClassName('tableRow')[i].style.display = '';
+                    document.getElementsByClassName('tableRow')[i].style.display = 'none';
                 }
             }
         }
@@ -61,7 +62,7 @@ export function Countries() {
         let country = (e.target.value);
         for (let i = 0; i < countriesData.length; i++) {
             if (countriesData[i]) {
-                if (country === countriesData[i].title) {
+                if (country === countriesData[i].country) {
                     setSelection(countriesData[i]);
                 }
             }
@@ -77,26 +78,26 @@ export function Countries() {
                         backgroundColor: [
                             '#3333ff', 'green', 'red',
                         ],
-                        data: [selection.total_cases, selection.total_recovered, selection.total_deaths]
+                        data: [selection.cases, selection.recovered, selection.deaths]
                     }]
                 }}
                 options={{
                     legend: { display: false },
-                    title: { display: true, text: `Current state in ${selection ? selection.title : 'Pakistan'}` }
+                    title: { display: true, text: `Current state in ${selection ? selection.country : 'Pakistan'}` }
                 }}
             />
         ) : <p className='select-country'>Select country to view the graph</p>
     )
     return (
         <div>
-            {countriesData[0].title ? (
+            {countriesData[0].country ? (
                 <div>
                     <div className='flex'>
-                    <div className='searchCountry'>
-                        <SearchIcon className='searchIcon' />
-                        <input type='search' placeholder='Search Country...' onChange={searchCountry} className='searchInput' />
-                    </div>
-                    <a className='viewGraphs' href='#graph'>View Graphs</a>
+                        <div className='searchCountry'>
+                            <SearchIcon className='searchIcon' />
+                            <input type='search' placeholder='Search Country...' onChange={searchCountry} className='searchInput' />
+                        </div>
+                        <a className='viewGraphs' href='#graph'>View Graphs</a>
                     </div>
                     <Paper className={tableClasses.root}>
                         <TableContainer className={tableClasses.container}>
@@ -122,32 +123,38 @@ export function Countries() {
                                                     {ind + 1}
                                                 </TableCell>
                                                 <TableCell component="th" scope="row">
-                                                    {countriesData[ind].title}
+                                                    {countriesData[ind].country}
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    <NumberFormat value={countriesData[ind].total_cases} displayType={'text'} thousandSeparator={true} />
+                                                    <NumberFormat value={countriesData[ind].cases} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    <NumberFormat value={countriesData[ind].total_deaths} displayType={'text'} thousandSeparator={true} />
+                                                    <NumberFormat value={countriesData[ind].deaths} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    <NumberFormat value={countriesData[ind].total_recovered} displayType={'text'} thousandSeparator={true} />
+                                                    <NumberFormat value={countriesData[ind].recovered} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
-                                                <TableCell className={countriesData[ind].total_new_cases_today !== 0 ? 'new-cases' : null} align="right">
-                                                    <NumberFormat className='color-white' value={countriesData[ind].total_new_cases_today} displayType={'text'} thousandSeparator={true} />
+                                                <TableCell className={countriesData[ind].todayCases !== 0 ? 'new-cases' : 'color-black'} align="right">
+                                                    <NumberFormat value={countriesData[ind].todayCases} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
-                                                <TableCell className={countriesData[ind].total_new_deaths_today !== 0 ? 'new-deaths' : null} align="right">
-                                                    <NumberFormat className='color-white' value={countriesData[ind].total_new_deaths_today} displayType={'text'} thousandSeparator={true} />
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    <NumberFormat value={countriesData[ind].total_serious_cases} displayType={'text'} thousandSeparator={true} />
+                                                <TableCell className={countriesData[ind].todayDeaths !== 0 ? 'new-deaths' : 'color-black'} align="right">
+                                                    <NumberFormat value={countriesData[ind].todayDeaths} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    <NumberFormat value={countriesData[ind].total_active_cases} displayType={'text'} thousandSeparator={true} />
+                                                    <NumberFormat value={countriesData[ind].critical} displayType={'text'} thousandSeparator={true} />
+                                                </TableCell>
+                                                <TableCell align="right">
+                                                    <NumberFormat value={countriesData[ind].active} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
                                             </TableRow>
                                         );
                                     })}
+                                    {!matchFound &&
+                                        <TableRow>
+                                            <TableCell colSpan="9" className="no_match" >
+                                                No matching records found
+                                                </TableCell>
+                                        </TableRow>}
                                 </TableBody>
                             </Table>
                         </TableContainer>
@@ -158,7 +165,7 @@ export function Countries() {
                             <Select labelId='countryList' defaultValue='' onChange={(e) => { selectCountry(e) }}>
                                 {countriesData.map((key, ind) => {
                                     return (
-                                        <MenuItem key={ind} value={countriesData[ind].title}>{countriesData[ind].title && countriesData[ind].title}</MenuItem>
+                                        <MenuItem key={ind} value={countriesData[ind].country}>{countriesData[ind].country && countriesData[ind].country}</MenuItem>
                                     )
                                 })}
                             </Select>
