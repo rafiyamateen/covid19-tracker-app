@@ -141,10 +141,10 @@ export function Countries() {
                                                     <NumberFormat value={countriesData[ind].todayDeaths} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    <NumberFormat value={countriesData[ind].critical} displayType={'text'} thousandSeparator={true} />
+                                                    <NumberFormat value={countriesData[ind].active} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
                                                 <TableCell align="right">
-                                                    <NumberFormat value={countriesData[ind].active} displayType={'text'} thousandSeparator={true} />
+                                                    <NumberFormat value={countriesData[ind].critical} displayType={'text'} thousandSeparator={true} />
                                                 </TableCell>
                                             </TableRow>
                                         );
